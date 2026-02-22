@@ -1,0 +1,93 @@
+version: '3.8'
+
+services:
+
+  # MySQL Database - stores demographic data
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Zookeeper - Kafka coordination
+  zookeeper:
+    image: confluentinc/cp-zookeeper:6.2.0
+    container_name: zookeeper
+    hostname: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    volumes:
+      - zk_data:/var/lib/zookeeper/data
+    restart: always
+
+  # Kafka Broker - message streaming
+  broker:
+    image: confluentinc/cp-server:6.2.0
+    container_name: broker
+    hostname: broker
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      CONFLUENT_METRICS_ENABLE: 'false'
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    restart: always
+
+  # Schema Registry - Avro schema management
+  schema-registry:
+    image: confluentinc/cp-schema-registry:6.2.0
+    container_name: schema-registry
+    hostname: schema-registry
+    depends_on:
+      - broker
+    ports:
+      - "8081:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: broker:29092
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+    restart: always
+
+  # InfluxDB + Grafana - visualization (optional)
+  influx_grafana:
+    image: philhawthorne/docker-influxdb-grafana:latest
+    container_name: influx_grafana
+    hostname: influx-grafana
+    ports:
+      - "3003:3003"
+      - "3004:8083"
+      - "8086:8086"
+    environment:
+      INFLUXDB_DB: influxTestDB
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+      - grafana_data:/var/lib/grafana
+    restart: always
+
+volumes:
+  mysql_data:
+  zk_data:
+  kafka_data:
+  influxdb_data:
+  grafana_data:
