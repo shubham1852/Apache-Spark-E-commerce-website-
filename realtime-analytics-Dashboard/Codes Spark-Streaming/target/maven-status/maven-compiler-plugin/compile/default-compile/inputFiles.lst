@@ -1,0 +1,10 @@
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\jobs\batch\BatchOlistProcessor.java
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\jobs\batch\UserDemographicDataJob.java
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\jobs\stream\SparkKafkaConsumerActivityNDemographic.java
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\jobs\stream\SparkKafkaConsumerForConsumerIdCountry.java
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\jobs\stream\UserActivityEventProducer.java
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\jobs\TopicDetails.java
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\jobs\UserActivity.java
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\jobs\UserDemoGraphicData.java
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\util\DemoGraphicDataUtil.java
+D:\vit\projects\ecommerce-analytics\realtime-analytics-Dashboard\Codes Spark-Streaming\src\main\java\util\UserActivityUtil.java

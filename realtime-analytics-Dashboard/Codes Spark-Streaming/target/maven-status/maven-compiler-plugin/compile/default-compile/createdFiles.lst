@@ -1,0 +1,11 @@
+jobs\stream\SparkKafkaConsumerActivityNDemographic.class
+jobs\stream\SparkKafkaConsumerForConsumerIdCountry.class
+jobs\UserDemoGraphicData.class
+jobs\stream\SparkKafkaConsumerForConsumerIdCountry$1.class
+util\UserActivityUtil.class
+jobs\TopicDetails.class
+jobs\batch\BatchOlistProcessor.class
+jobs\batch\UserDemographicDataJob.class
+jobs\stream\UserActivityEventProducer.class
+jobs\UserActivity.class
+util\DemoGraphicDataUtil.class
