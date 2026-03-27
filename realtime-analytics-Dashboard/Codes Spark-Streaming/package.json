@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-analytics-platform",
+  "version": "1.0.0",
+  "scripts": {
+    "backend": "cd analytics-dashboard-backend && node server.js",
+    "frontend": "cd analytics-dashboard-frontend && npm run dev",
+    "open": "start msedge http://localhost:5173",
+    "start": "concurrently \"npm run backend\" \"npm run frontend\" \"npm run open\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
